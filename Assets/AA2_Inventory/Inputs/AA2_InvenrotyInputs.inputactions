@@ -1,0 +1,63 @@
+{
+    "version": 1,
+    "name": "AA2_InvenrotyInputs",
+    "maps": [
+        {
+            "name": "RightController",
+            "id": "5dcef520-e496-46d5-b49b-eb267f915b42",
+            "actions": [
+                {
+                    "name": "RightHolsterSecundary",
+                    "type": "Button",
+                    "id": "b6b9bbaa-69d5-45f9-9206-c5a540f21150",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9e5108a1-e919-4176-9c60-f78e03adafde",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHolsterSecundary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "LeftController",
+            "id": "a26c9d68-5dd0-498e-9891-255eb53726ae",
+            "actions": [
+                {
+                    "name": "LeftHolsterSecundary",
+                    "type": "Button",
+                    "id": "3f0bd68e-8511-47d7-af7f-7a29b8800aad",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cc3c2fba-93db-4d1b-9fb1-fd398dfe5b35",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHolsterSecundary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

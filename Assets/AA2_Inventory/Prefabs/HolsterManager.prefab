@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8967659433811897375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106476273333818382}
+  - component: {fileID: 8034409903320892889}
+  - component: {fileID: 7710644236906493662}
+  m_Layer: 0
+  m_Name: HolsterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2106476273333818382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967659433811897375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.51828474, y: -4.3085546, z: 10.081918}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8034409903320892889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967659433811897375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d673310a649d8144a93eb8c195f5cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7710644236906493662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967659433811897375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53c6b099b87dfb4fb06e68e93c62c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraOffset: {fileID: 0}
+  _spawnActionRight: {fileID: -4699980144184698893, guid: 77558bdf76c773e4da821b78437af94e, type: 3}
+  _spawnActionLeft: {fileID: -291079280999098420, guid: 77558bdf76c773e4da821b78437af94e, type: 3}
+  _holsterPrefab: {fileID: 4950652480489922267, guid: ac3f438474560df4c90c447c7cea0ace, type: 3}
+  _holdTime: 1.5
+  _bodyAnchor: {fileID: 0}
+  _bodyRadius: 0.3
+  _hapticSteps:
+  - 0.25
+  - 0.75
+  - 1
+  - 1.25
+  _rightControllerTransform: {fileID: 0}
+  _leftControllerTransform: {fileID: 0}
