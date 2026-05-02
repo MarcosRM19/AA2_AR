@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Hands;
 using UnityEngine.Events;
+using TMPro;
 
 public class GestureReader : MonoBehaviour
 {
@@ -9,12 +10,11 @@ public class GestureReader : MonoBehaviour
     [SerializeField] private List<GestureData> _gestures;
     [SerializeField] private float _detectionInterval = 0.1f; 
 
-    [Header("Eventos")]
-    [SerializeField] private UnityEvent<string> _onGestureDetected;
-
     private XRHandSubsystem _handSubsystem;
     private float _timer;
     private string _lastDetectedGesture = "";
+
+    public TextMeshProUGUI debugText;
 
     void Start()
     {
@@ -114,9 +114,9 @@ public class GestureReader : MonoBehaviour
             {
                 if (_lastDetectedGesture != gesture.gestureName)
                 {
-                    _lastDetectedGesture = gesture.gestureName;
+                    debugText.text = "Gesto detectado: " + gesture.gestureName;
                     Debug.Log("Gesto detectado: " + gesture.gestureName);
-                    _onGestureDetected?.Invoke(gesture.gestureName);
+                    _lastDetectedGesture = gesture.gestureName;
                 }
                 return;
             }

@@ -1,9 +1,13 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Hands;
 
 public class GestureDebugger : MonoBehaviour
 {
+    public TextMeshProUGUI debugText; 
+
     private XRHandSubsystem handSubsystem;
 
     void Start()
@@ -14,28 +18,26 @@ public class GestureDebugger : MonoBehaviour
             handSubsystem = subsystems[0];
     }
 
-    void OnGUI()
+    void Update()
     {
-        if (handSubsystem == null) return;
+        if (handSubsystem == null || debugText == null) return;
 
-        DrawHand(handSubsystem.rightHand, "RIGHT", 10);
-        DrawHand(handSubsystem.leftHand, "LEFT", 130);
+        string info = "";
+        info += FormatHand(handSubsystem.rightHand, "RIGHT");
+        info += FormatHand(handSubsystem.leftHand, "LEFT");
+        debugText.text = info;
     }
 
-    private void DrawHand(XRHand hand, string label, int yOffset)
+    private string FormatHand(XRHand hand, string label)
     {
-        if (!hand.isTracked)
-        {
-            GUI.Label(new Rect(10, yOffset, 300, 20), label + ": no detectada");
-            return;
-        }
+        if (!hand.isTracked) return label + ": no detectada\n\n";
 
-        GUI.Label(new Rect(10, yOffset, 300, 20), label);
-        GUI.Label(new Rect(10, yOffset + 20, 300, 20), $"Thumb:  {GetCurl(hand, XRHandFingerID.Thumb):F2}");
-        GUI.Label(new Rect(10, yOffset + 40, 300, 20), $"Index:  {GetCurl(hand, XRHandFingerID.Index):F2}");
-        GUI.Label(new Rect(10, yOffset + 60, 300, 20), $"Middle: {GetCurl(hand, XRHandFingerID.Middle):F2}");
-        GUI.Label(new Rect(10, yOffset + 80, 300, 20), $"Ring:   {GetCurl(hand, XRHandFingerID.Ring):F2}");
-        GUI.Label(new Rect(10, yOffset + 100, 300, 20), $"Little: {GetCurl(hand, XRHandFingerID.Little):F2}");
+        return $"{label}\n" +
+               $"Thumb:  {GetCurl(hand, XRHandFingerID.Thumb):F2}\n" +
+               $"Index:  {GetCurl(hand, XRHandFingerID.Index):F2}\n" +
+               $"Middle: {GetCurl(hand, XRHandFingerID.Middle):F2}\n" +
+               $"Ring:   {GetCurl(hand, XRHandFingerID.Ring):F2}\n" +
+               $"Little: {GetCurl(hand, XRHandFingerID.Little):F2}\n\n";
     }
 
     private float GetCurl(XRHand hand, XRHandFingerID finger)
