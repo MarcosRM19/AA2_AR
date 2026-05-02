@@ -6,7 +6,7 @@ using UnityEngine.XR.Hands;
 
 public class GestureDebugger : MonoBehaviour
 {
-    public TextMeshProUGUI debugText; 
+    [SerializeField] private TextMeshProUGUI debugText; 
 
     private XRHandSubsystem handSubsystem;
 

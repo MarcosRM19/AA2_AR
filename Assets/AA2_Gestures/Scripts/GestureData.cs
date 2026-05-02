@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "NewGesture", menuName = "AA2 Inventory/Gesture")]
 public class GestureData : ScriptableObject
@@ -12,4 +13,6 @@ public class GestureData : ScriptableObject
     [Range(0f, 1f)] public float littleCurl;
 
     public float threshold = 0.2f;
+
+    public UnityEvent onGestureDetected;
 }

@@ -6,15 +6,21 @@ using TMPro;
 
 public class GestureReader : MonoBehaviour
 {
+    public static GestureReader Instance { get; private set; }
+
     [Header("Configuración")]
-    [SerializeField] private List<GestureData> _gestures;
-    [SerializeField] private float _detectionInterval = 0.1f; 
+    [SerializeField] private float _detectionInterval = 0.1f;
+    private List<GestureData> _gestures = new();
 
     private XRHandSubsystem _handSubsystem;
     private float _timer;
     private string _lastDetectedGesture = "";
 
-    public TextMeshProUGUI debugText;
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -28,29 +34,24 @@ public class GestureReader : MonoBehaviour
 
     void Update()
     {
-        if (_handSubsystem == null) 
-            return;
+        if (_handSubsystem == null) return;
 
         _timer += Time.deltaTime;
-        if (_timer < _detectionInterval) 
-            return;
-        
+        if (_timer < _detectionInterval) return;
         _timer = 0f;
 
-        CheckHand(_handSubsystem.rightHand);
-        CheckHand(_handSubsystem.leftHand);
+        if (!CheckHand(_handSubsystem.rightHand))
+            CheckHand(_handSubsystem.leftHand);
     }
 
-    private void CheckHand(XRHand hand)
+    private bool CheckHand(XRHand hand)
     {
-        if (!hand.isTracked) 
-            return;
+        if (!hand.isTracked) return false;
 
         float[] curls = GetFingerCurls(hand);
-        if (curls == null) 
-            return;
+        if (curls == null) return false;
 
-        DetectGesture(curls);
+        return DetectGesture(curls);
     }
 
     private float[] GetFingerCurls(XRHand hand)
@@ -85,20 +86,19 @@ public class GestureReader : MonoBehaviour
         return Mathf.Clamp01(1f - (current / (extended * 1.8f)));
     }
 
-    private void DetectGesture(float[] curls)
+    private bool DetectGesture(float[] curls)
     {
         foreach (var gesture in _gestures)
         {
-            if (gesture == null) 
-                continue;
+            if (gesture == null) continue;
 
             float[] targets = {
-                gesture.thumbCurl,
-                gesture.indexCurl,
-                gesture.middleCurl,
-                gesture.ringCurl,
-                gesture.littleCurl
-            };
+            gesture.thumbCurl,
+            gesture.indexCurl,
+            gesture.middleCurl,
+            gesture.ringCurl,
+            gesture.littleCurl
+        };
 
             bool match = true;
             for (int i = 0; i < 5; i++)
@@ -114,15 +114,15 @@ public class GestureReader : MonoBehaviour
             {
                 if (_lastDetectedGesture != gesture.gestureName)
                 {
-                    debugText.text = "Gesto detectado: " + gesture.gestureName;
-                    Debug.Log("Gesto detectado: " + gesture.gestureName);
                     _lastDetectedGesture = gesture.gestureName;
+                    gesture.onGestureDetected?.Invoke();
                 }
-                return;
+                return true; 
             }
         }
 
         _lastDetectedGesture = "";
+        return false;
     }
 
     private XRHandJointID GetProximalJoint(XRHandFingerID finger)
@@ -161,5 +161,15 @@ public class GestureReader : MonoBehaviour
             default: 
                 return XRHandJointID.Wrist;
         }
+    }
+
+    public void AddGesture(GestureData data)
+    {
+        _gestures.Add(data);
+    }
+
+    public void RemoveGesture(GestureData data)
+    {
+        _gestures.Remove(data);
     }
 }

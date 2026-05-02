@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d12187dc447e71a40bf5ba493cf51835, type: 3}
-  m_Name: OK
+  m_Name: Palm
   m_EditorClassIdentifier: 
-  gestureName: OK
-  thumbCurl: 0.15
-  indexCurl: 0.33
+  gestureName: Palm
+  thumbCurl: 0
+  indexCurl: 0
   middleCurl: 0
   ringCurl: 0
   littleCurl: 0
