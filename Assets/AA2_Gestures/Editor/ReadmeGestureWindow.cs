@@ -2,14 +2,14 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-public class ReadmeWindow : EditorWindow
+public class ReadmeGestureWindow : EditorWindow
 {
     private string content = "";
     private Vector2 scroll;
 
     public static void Open(string readmePath)
     {
-        var window = GetWindow<ReadmeWindow>("AA2 Inventory - README");
+        var window = GetWindow<ReadmeGestureWindow>("AA2 Gesture - README");
         window.minSize = new Vector2(500, 400);
         window.content = File.ReadAllText(readmePath);
         window.Show();

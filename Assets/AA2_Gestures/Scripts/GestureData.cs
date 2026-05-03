@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "NewGesture", menuName = "AA2 Inventory/Gesture")]
+[CreateAssetMenu(fileName = "NewGesture", menuName = "AA2 Gesture/Gesture")]
 public class GestureData : ScriptableObject
 {
     public string gestureName;

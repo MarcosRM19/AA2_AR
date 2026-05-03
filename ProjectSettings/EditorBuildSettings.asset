@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/AA2_Inventory/Scene/AA2_InventoryScene.unity
     guid: 0cf48973e58ad764ba72d81af54dde29
   - enabled: 1

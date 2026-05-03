@@ -3,14 +3,13 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-
 [InitializeOnLoad]
-public class AA2InventoryInstaller
+public class AA2GesturesInstaller
 {
-    private const string SCENE_PATH = "Assets/AA2_Inventory/Scene/AA2_InventoryScene.unity";
-    private const string README_PATH = "Assets/AA2_Inventory/README.md";
+    private const string SCENE_PATH = "Assets/AA2_Gestures/Scene/AA2_GestureScene.unity";
+    private const string README_PATH = "Assets/AA2_Gestures/README.md";
 
-    static AA2InventoryInstaller()
+    static AA2GesturesInstaller()
     {
         EditorApplication.delayCall += OnPackageInstalled;
     }
@@ -23,7 +22,7 @@ public class AA2InventoryInstaller
         }
 
         bool openScene = EditorUtility.DisplayDialog(
-            "AA2 Inventory instalado ✓",
+            "AA2 Gestures instalado ✓",
             "¿Quieres abrir la escena de demostración?\n\nSe añadirá como primera escena en Build Settings.",
             "Sí, abrir escena",
             "No, gracias"
@@ -38,8 +37,7 @@ public class AA2InventoryInstaller
         OpenReadme();
     }
 
-    // Menú para testear sin reinstalar
-    [MenuItem("AA2 Inventory/Test Installer")]
+    [MenuItem("AA2 Gesture/Test Installer")]
     public static void TestInstaller()
     {
         OnPackageInstalled();
@@ -64,6 +62,6 @@ public class AA2InventoryInstaller
             return;
         }
 
-        ReadmeInventoryWindow.Open(README_PATH);
+        ReadmeGestureWindow.Open(README_PATH);
     }
 }
