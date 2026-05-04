@@ -101,29 +101,30 @@ public class HolsterSpawner : MonoBehaviour
     void SpawnHolster(bool rightActive)
     {
         Transform controllerTransform = rightActive ? _rightControllerTransform : _leftControllerTransform;
-
         Vector3 worldPos = controllerTransform.position;
         Quaternion worldRot = controllerTransform.rotation;
 
         GameObject holsterGO = Instantiate(_holsterPrefab, worldPos, worldRot);
 
         var slot = holsterGO.GetComponent<HolsterSlot>();
-        if (slot == null) 
-            return;
-
-        slot.SetWeaponUpAxis(controllerTransform.forward);
-        slot.SetWeaponRightAxis(controllerTransform.right);
+        if (slot == null) return;
 
         bool isBodyHolster = IsInsideBodyCapsule(worldPos);
 
         if (isBodyHolster)
         {
             holsterGO.transform.SetParent(_bodyAnchor);
+
+            slot.SetWeaponUpAxis(holsterGO.transform.InverseTransformDirection(controllerTransform.forward));
+            slot.SetWeaponRightAxis(holsterGO.transform.InverseTransformDirection(controllerTransform.right));
             slot.SetHolsterType(HolsterType.Body);
         }
         else
         {
             holsterGO.transform.SetParent(null);
+
+            slot.SetWeaponUpAxis(controllerTransform.forward);
+            slot.SetWeaponRightAxis(controllerTransform.right);
             slot.SetHolsterType(HolsterType.World);
         }
 

@@ -87,20 +87,19 @@ public class CatchWeapon : XRGrabInteractable
     {
         rb.isKinematic = true;
         rb.useGravity = false;
+
         transform.SetParent(null);
 
         Vector3 swordUp = slot.GetWeapomUpAxis();
         Vector3 swordRight = slot.GetWeapomRightAxis();
         Vector3 swordForward = Vector3.Cross(swordRight, swordUp).normalized;
-
         Quaternion baseRot = Quaternion.LookRotation(swordForward, swordUp);
         Quaternion offset = Quaternion.Euler(holsterRotationOffset);
         transform.rotation = baseRot * offset;
 
         if (attachTransform != null)
         {
-            Vector3 offsetPos = transform.position - attachTransform.position;
-            transform.position = slot.transform.position + offsetPos;
+            transform.position = slot.transform.position - (attachTransform.position - transform.position);
         }
         else
         {
@@ -108,6 +107,7 @@ public class CatchWeapon : XRGrabInteractable
         }
 
         transform.SetParent(slot.transform);
+
         currentSlot = slot;
         slot.SetHolsterBeingUsed(true);
     }

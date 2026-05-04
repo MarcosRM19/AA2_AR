@@ -33,11 +33,23 @@ public class HolsterSlot : MonoBehaviour
 
     public Vector3 GetWeapomUpAxis()
     {
+        if (_holsterType == HolsterType.Body)
+        {
+            Vector3 result = transform.rotation * _weaponUpAxis;
+            Debug.Log($"UpAxis local: {_weaponUpAxis} → mundo: {result}");
+            return result;
+        }
         return _weaponUpAxis;
     }
 
     public Vector3 GetWeapomRightAxis()
     {
+        if (_holsterType == HolsterType.Body)
+        {
+            Vector3 result = transform.rotation * _weaponRightAxis;
+            Debug.Log($"RightAxis local: {_weaponRightAxis} → mundo: {result}");
+            return result;
+        }
         return _weaponRightAxis;
     }
 
