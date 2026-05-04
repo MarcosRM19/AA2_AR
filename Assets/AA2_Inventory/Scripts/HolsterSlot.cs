@@ -1,65 +1,68 @@
 ﻿using UnityEngine;
 
-public enum HolsterType { Body, World }
-
-public class HolsterSlot : MonoBehaviour
+namespace AA2Inventory_G4
 {
-    [Header("HolsterType")]
-    [SerializeField] private HolsterType _holsterType = HolsterType.World;
+    public enum HolsterType { Body, World }
 
-    [SerializeField] private Vector3 _weaponUpAxis;
-    [SerializeField] private Vector3 _weaponRightAxis;
-    [SerializeField] private bool _holsterBeingUsed;
-
-    public void SetWeaponUpAxis(Vector3 weaponUpAxis)
+    public class HolsterSlot : MonoBehaviour
     {
-        _weaponUpAxis = weaponUpAxis;
-    }
+        [Header("HolsterType")]
+        [SerializeField] private HolsterType _holsterType = HolsterType.World;
 
-    public void SetWeaponRightAxis(Vector3 weaponRightAxis)
-    {
-        _weaponRightAxis = weaponRightAxis;
-    }
+        [SerializeField] private Vector3 _weaponUpAxis;
+        [SerializeField] private Vector3 _weaponRightAxis;
+        [SerializeField] private bool _holsterBeingUsed;
 
-    public void SetHolsterBeingUsed(bool occupied)
-    {
-        _holsterBeingUsed = occupied;
-    }
-
-    public void SetHolsterType(HolsterType holsterType)
-    {
-        _holsterType = holsterType;
-    }
-
-    public Vector3 GetWeapomUpAxis()
-    {
-        if (_holsterType == HolsterType.Body)
+        public void SetWeaponUpAxis(Vector3 weaponUpAxis)
         {
-            Vector3 result = transform.rotation * _weaponUpAxis;
-            Debug.Log($"UpAxis local: {_weaponUpAxis} → mundo: {result}");
-            return result;
+            _weaponUpAxis = weaponUpAxis;
         }
-        return _weaponUpAxis;
-    }
 
-    public Vector3 GetWeapomRightAxis()
-    {
-        if (_holsterType == HolsterType.Body)
+        public void SetWeaponRightAxis(Vector3 weaponRightAxis)
         {
-            Vector3 result = transform.rotation * _weaponRightAxis;
-            Debug.Log($"RightAxis local: {_weaponRightAxis} → mundo: {result}");
-            return result;
+            _weaponRightAxis = weaponRightAxis;
         }
-        return _weaponRightAxis;
-    }
 
-    public HolsterType GetHolsterType()
-    {
-        return _holsterType;
-    }
+        public void SetHolsterBeingUsed(bool occupied)
+        {
+            _holsterBeingUsed = occupied;
+        }
 
-    public bool GetHolsterIsBeingUsed()
-    {
-        return _holsterBeingUsed;
+        public void SetHolsterType(HolsterType holsterType)
+        {
+            _holsterType = holsterType;
+        }
+
+        public Vector3 GetWeapomUpAxis()
+        {
+            if (_holsterType == HolsterType.Body)
+            {
+                Vector3 result = transform.rotation * _weaponUpAxis;
+                Debug.Log($"UpAxis local: {_weaponUpAxis} → mundo: {result}");
+                return result;
+            }
+            return _weaponUpAxis;
+        }
+
+        public Vector3 GetWeapomRightAxis()
+        {
+            if (_holsterType == HolsterType.Body)
+            {
+                Vector3 result = transform.rotation * _weaponRightAxis;
+                Debug.Log($"RightAxis local: {_weaponRightAxis} → mundo: {result}");
+                return result;
+            }
+            return _weaponRightAxis;
+        }
+
+        public HolsterType GetHolsterType()
+        {
+            return _holsterType;
+        }
+
+        public bool GetHolsterIsBeingUsed()
+        {
+            return _holsterBeingUsed;
+        }
     }
 }

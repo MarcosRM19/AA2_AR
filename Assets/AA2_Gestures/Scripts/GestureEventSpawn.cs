@@ -1,13 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-public class GestureEventSpawn : GestureEvent
+namespace AA2Gesture_G4
 {
-    [SerializeField] private TextMeshProUGUI _debugText;
-
-    protected override void OnGestureTriggered()
+    public class GestureEventSpawn : GestureEvent
     {
-        Debug.Log("Gesto detectado: " + _gesture.gestureName);
-        _debugText.text = "Gesto de Spawn de Objeto detectado: " + _gesture.gestureName;
+        [SerializeField] private TextMeshProUGUI _debugText;
+
+        protected override void OnGestureTriggered()
+        {
+            Debug.Log("Gesto detectado: " + _gesture.gestureName);
+            _debugText.text = "Gesto de Spawn de Objeto detectado: " + _gesture.gestureName;
+        }
     }
 }

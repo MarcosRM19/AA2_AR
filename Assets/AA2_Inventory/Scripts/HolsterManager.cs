@@ -1,30 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HolsterManager : MonoBehaviour
+namespace AA2Inventory_G4
 {
-    public static HolsterManager Instance { get; private set; }
-
-    private List<HolsterSlot> holsters = new();
-
-    void Awake()
+    public class HolsterManager : MonoBehaviour
     {
-        if (Instance == null) 
-            Instance = this;
-        else 
-            Destroy(gameObject);
-    }
+        public static HolsterManager Instance { get; private set; }
 
-    public void RegisterHolster(HolsterSlot slot)
-    {
-        holsters.Add(slot);
-        Debug.Log($"Registered holster: {slot.GetHolsterType()} at {slot.transform.position}");
-    }
+        private List<HolsterSlot> holsters = new();
 
-    public void UnregisterHolster(HolsterSlot slot)
-    {
-        holsters.Remove(slot);
-    }
+        void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(gameObject);
+        }
 
-    public List<HolsterSlot> GetAll() => holsters;
+        public void RegisterHolster(HolsterSlot slot)
+        {
+            holsters.Add(slot);
+            Debug.Log($"Registered holster: {slot.GetHolsterType()} at {slot.transform.position}");
+        }
+
+        public void UnregisterHolster(HolsterSlot slot)
+        {
+            holsters.Remove(slot);
+        }
+
+        public List<HolsterSlot> GetAll() => holsters;
+    }
 }
